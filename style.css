@@ -1,0 +1,296 @@
+/* Hanwen Zhang — personal site */
+
+:root {
+  --bg:        #ffffff;
+  --text:      #1c1c1e;
+  --muted:     #63636b;
+  --rule:      #e2e2de;
+  --accent:    #2a5d8f;
+
+  --container:  62rem;   /* outer page width  */
+  --sidebar:    13.5rem; /* left column       */
+  --gap:        3.25rem; /* between columns   */
+  --measure:    42rem;   /* reading width     */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:     #16171a;
+    --text:   #e8e8e6;
+    --muted:  #a0a0a8;
+    --rule:   #2e3036;
+    --accent: #7fb0dd;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.62;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+.nowrap { white-space: nowrap; }
+
+/* ---------- header / nav ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  padding: 2.5rem 0 1.25rem;
+  margin-bottom: 2.75rem;
+}
+
+.site-name {
+  font-size: 1.65rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.15rem;
+}
+
+.site-name a { color: inherit; text-decoration: none; }
+.site-name a:hover { color: var(--accent); }
+
+.site-tagline {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+}
+
+nav a:hover { color: var(--text); }
+
+nav a[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- two-column layout ---------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar) 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+
+.sidebar { position: sticky; top: 2rem; }
+
+.content {
+  max-width: var(--measure);
+  min-width: 0;            /* let long words wrap instead of widening the grid */
+}
+
+.content > :first-child { margin-top: 0; }
+
+/* stack on narrow screens */
+@media (max-width: 54rem) {
+  .layout { grid-template-columns: 1fr; gap: 2.25rem; }
+  .sidebar { position: static; }
+}
+
+/* ---------- sidebar: portrait + contact ---------- */
+
+.portrait {
+  display: block;
+  width: 100%;
+  max-width: 11rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  margin: 0 0 1.5rem;
+}
+
+.contact { list-style: none; margin: 0; padding: 0; }
+
+.contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
+}
+
+.contact .icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  margin-top: 0.28rem;   /* optical alignment with the first text line */
+  color: var(--muted);
+}
+
+.contact .value {
+  min-width: 0;          /* allow a long address to wrap, not overflow */
+  font-size: 0.88rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+/* ---------- typography ---------- */
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+}
+
+h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 2.75rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+h3 {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  line-height: 1.4;
+}
+
+p { margin: 0 0 1.1rem; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* opening paragraph on the about page */
+.lede {
+  font-size: 1.12rem;
+  line-height: 1.55;
+  margin-bottom: 1.4rem;
+}
+
+/* ---------- papers ---------- */
+
+.paper { margin: 0 0 1.6rem; }
+
+/* rule only between consecutive papers, never trailing */
+.paper + .paper {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.6rem;
+}
+
+.paper-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
+.abstract { font-size: 0.96rem; margin-bottom: 0; }
+
+/* collapsible abstract: folded by default, opened with the pill button */
+.abstract-toggle summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  padding: 0.22rem 0.75rem 0.22rem 0.65rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  transition: border-color 0.15s ease;
+}
+
+.abstract-toggle summary::-webkit-details-marker { display: none; }
+
+/* chevron: points right when folded, down when open */
+.abstract-toggle summary::before {
+  content: "";
+  width: 0.36rem;
+  height: 0.36rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+
+.abstract-toggle[open] summary::before { transform: translateY(-0.1rem) rotate(45deg); }
+
+.abstract-toggle summary:hover { border-color: var(--accent); }
+
+.abstract-toggle summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.abstract-toggle .abstract { margin-top: 0.85rem; }
+
+.availability {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 1.75rem;
+}
+
+/* ---------- teaching entries ---------- */
+
+.entry {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.25rem 1.25rem;
+  margin: 0 0 1.75rem;
+}
+
+.entry-when {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-top: 0.2rem;
+}
+
+.entry-what > :last-child { margin-bottom: 0; }
+
+.entry-where { color: var(--muted); font-size: 0.94rem; margin: 0 0 0.4rem; }
+
+.courses { margin: 0; padding-left: 1.1rem; font-size: 0.94rem; }
+.courses li { margin-bottom: 0.25rem; }
+
+@media (max-width: 34rem) {
+  .entry { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 0 3rem;
+  border-top: 1px solid var(--rule);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
