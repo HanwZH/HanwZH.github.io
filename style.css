@@ -95,6 +95,52 @@ nav a[aria-current="page"] {
   border-bottom-color: var(--accent);
 }
 
+/* ---------- header portrait + email (inner pages) ---------- */
+
+/* photo sits left of the name; the text block holds name, tagline, email, nav */
+.site-header .wrap.with-photo {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+}
+
+.site-photo {
+  width: 4.1rem;
+  height: 4.1rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  margin-top: 0.2rem;
+}
+
+.header-text { min-width: 0; flex: 1 1 auto; }
+
+.site-email {
+  margin: 0 0 1.25rem;
+  font-size: 0.92rem;
+  word-break: break-word;
+}
+
+/* the tagline is followed by the email row, so it no longer carries the gap */
+.with-photo .site-tagline { margin-bottom: 0.2rem; }
+
+@media (max-width: 30rem) {
+  .site-photo { width: 3.2rem; height: 3.2rem; }
+  .site-header .wrap.with-photo { gap: 0.9rem; }
+}
+
+/* ---------- single-column pages ---------- */
+
+.page { max-width: var(--measure); }
+.page > :first-child { margin-top: 0; }
+
+/* align the page text with the header text block, so photo, name, nav and
+   content share one left edge; drops back to flush-left when stacked */
+@media (min-width: 42rem) {
+  .page { margin-left: calc(4.1rem + 1.15rem); }
+}
+
 /* ---------- two-column layout ---------- */
 
 .layout {
