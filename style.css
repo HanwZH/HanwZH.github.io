@@ -121,6 +121,30 @@ nav a[aria-current="page"] {
   .site-header .wrap.with-photo { gap: 0.9rem; }
 }
 
+/* ---------- CV preview ---------- */
+
+.cv-actions {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.cv-viewer {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.414;   /* A4 */
+  max-width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--bg);
+}
+
+/* a phone shows a stub rather than a usable viewer, so give it height only */
+@media (max-width: 34rem) {
+  .cv-viewer { aspect-ratio: auto; height: 60vh; }
+}
+
 /* ---------- single-column pages ---------- */
 
 .page { max-width: var(--measure); }

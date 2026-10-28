@@ -11,9 +11,10 @@ Published at <https://hanwzh.github.io>.
 | `index.html` | Home page: short introduction and research focus |
 | `research.html` | Working papers and work in progress, with abstracts |
 | `teaching.html` | Teaching-assistant positions |
-| `cv.html` | Placeholder — says the CV is available on request; drop a link or PDF here when ready |
+| `cv.html` | Embedded CV preview plus a download link |
 | `style.css` | All styling (light + dark mode, responsive) |
 | `img/hanwen-zhang.jpg` | Portrait |
+| `files/Hanwen_Zhang_CV.pdf` | Published CV (source: `AI_job_search/cv/academic_CV.pdf`) |
 | `.nojekyll` | Tells GitHub Pages to serve the files as-is, not run Jekyll |
 
 ## Preview locally
@@ -47,10 +48,10 @@ Edit the HTML directly and push:
 git add -A && git commit -m "Update site" && git push
 ```
 
-No PDFs are hosted here by design: the CV and paper drafts are shared on
-request, so the site links to neither. If that changes, drop the file in and
-link it — remember an unlinked file at a known URL is still publicly fetchable
-once the repo is public.
+`files/Hanwen_Zhang_CV.pdf` is the published CV, embedded and linked on
+`cv.html`. Replace that file to update it. Paper drafts are still shared on
+request only. Note that anything in `files/` is publicly fetchable at its URL,
+linked or not.
 
 ## Taking the site offline
 
